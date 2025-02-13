@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="marathon-container">
+    <h2>{% if session.get('lang', 'tr') == 'en' %}Marathon Mode{% else %}Maraton Modu{% endif %}</h2>
+    <p><strong>{% if session.get('lang', 'tr') == 'en' %}Question:{% else %}Soru:{% endif %}</strong> {{ question_num }} &nbsp; | &nbsp; <strong>{% if session.get('lang', 'tr') == 'en' %}Remaining Lives:{% else %}Kalan Can:{% endif %}</strong> {{ lives }}</p>
+    
+    <div class="image-container">
+        <!--<img src="{{ url_for('photos', filename=question.photo_path) }}" alt="Marathon Image">-->
+        <img src="{{ question.photo_path }}" alt="Marathon Image">
+    </div>
+    
+    {% if message %}
+    <div class="feedback">
+        <p>{{ message }}</p>
+    </div>
+    {% endif %}
+    
+    <form method="POST">
+        <div class="answer-buttons">
+            {% for option in question.options %}
+                <button type="submit" name="answer" value="{{ option }}">{{ option }}</button>
+            {% endfor %}
+        </div>
+    </form>
+    
+    <div class="restart-container">
+        <button class="restart-button" onclick="window.location.href='{{ url_for('marathon_restart') }}'">
+            {% if session.get('lang', 'tr') == 'en' %}Restart Marathon{% else %}Yeniden Başla{% endif %}
+        </button>
+    </div>
+</div>
+
+<script>
+    window.addEventListener("unload", function() {
+        navigator.sendBeacon("{{ url_for('marathon_restart') }}");
+    });
+</script>
+{% endblock %}

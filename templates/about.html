@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% block content %}
+    <h2>
+        {% if session.get('lang', 'tr') == 'en' %}
+            About This Application
+        {% else %}
+            Bu Uygulama Hakkında
+        {% endif %}
+    </h2>
+    <p>
+        {% if session.get('lang', 'tr') == 'en' %}
+            Welcome to Age Quiz! This application is a fun and interactive game where you test your ability to guess ages based on images. Enjoy playing and sharing your results!<br>There are two game modes, Quiz and Marathon. In Quiz mode, you guess 20 random questions. In Marathon mode, you get 3 lives and you can keep guessing until you run out of them. But beware, time is also important in marathon mode.<br><center>All data and images used in the application were obtained from <a href=“https://susanqq.github.io/UTKFace/”>UTKFace</a>'s dataset (Face Dataset) and no additional sources were used. If you believe that any of these images violate your rights, you can have the content removed from the dataset by contacting one of the relevant persons indicated on UTKFace's website.</center><br><center>This application is available for non-commercial purposes only.</center><br>Copyright © [2025] [Ahmet Refik Şener]
+        {% else %}
+            Yaş Tahmin oyununa hoş geldiniz! Bu uygulama, resimler üzerinden yaş tahmin etme yeteneğinizi test ettiğiniz eğlenceli ve interaktif bir oyundur. Oynayın, eğlenin ve sonuçlarınızı paylaşın!<br>İki oyun modu bulunmaktadır, bunlar Quiz ve Maraton modlarıdır. Quiz modunda, karşınıza gelen 20 rastgele soruyu çözersiniz. Maraton modunda ise 3 yanlış cevap hakkınız bulunur ve bu haklar tükenene kadar tahmin etmeye devam edebilirsiniz. Ama dikkat edin, maraton modunda süre de önemlidir.<br><center>Uygulamada kullanılan tüm veriler ve görseller <a href="https://susanqq.github.io/UTKFace/">UTKFace</a>'in veri setinden (Face Dataset) elde edilmiştir ve herhangi bir ek kaynak kullanılmamıştır. Eğer bu görsellerden herhangi birinin haklarınızı ihlal ettiğini düşünüyorsanız UTKFace'in web sayfasında belirttiği ilgili kişilerden biriyle iletişime geçerek içeriği veri setinden kaldırtabilirsiniz.</center><br><center>Bu uygulama yalnızca ticari olmayan amaçlar doğrultusunda kullanılabilir.</center><br>Copyright © [2025] [Ahmet Refik Şener]
+        {% endif %}
+    </p>
+{% endblock %}

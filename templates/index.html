@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="{{ session.get('lang', 'tr') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if session.get('lang', 'tr') == 'en' %}Age Quiz{% else %}Yaş Tahmin Quiz{% endif %}</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            position: absolute;
+            top: 20px;
+            width: 90%;
+            max-width: 600px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left,
+        .header-center,
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            margin-top: 50px;
+        }
+
+        .quiz-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .image-container {
+            width: 300px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .answer-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .answer-buttons button {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .answer-buttons button:hover {
+            background-color: #0056b3;
+        }
+
+        .restart-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .restart-button:hover {
+            background-color: darkred;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.4);
+            pointer-events: auto;
+        }
+
+        .watermark a {
+            pointer-events: auto;
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        .watermark a:hover {
+            color: rgba(0, 0, 0, 1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <a href="{{ url_for('about') }}">{% if session.get('lang', 'tr') == 'en' %}About{% else %}Hakkında{% endif %}</a>
+        </div>
+        <div class="header-center">
+            <a href="{{ url_for('quiz') }}">Quiz</a>
+            <a href="{{ url_for('marathon') }}">{% if session.get('lang', 'tr') == 'en' %}Marathon{% else %}Maraton{% endif %}</a>
+        </div>
+        <div class="header-right">
+            <a href="{{ url_for('set_language', lang='en') }}">EN</a>
+            <a href="{{ url_for('set_language', lang='tr') }}">TR</a>
+        </div>
+    </div>
+
+    <!-- Content Container -->
+    <div class="container">
+        <div class="watermark"><a href="https://github.com/krefikk" target="_blank">github.com/krefikk</a></div>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>

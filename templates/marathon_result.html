@@ -1,0 +1,55 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="marathon-container" id="marathon-container">
+    <h2>{% if session.get('lang', 'tr') == 'en' %}Age Marathon Results{% else %}Yaş Tahmin Maratonu Sonuçlarım{% endif %}</h2>
+    <p><strong>{% if session.get('lang', 'tr') == 'en' %}Correct Answers:{% else %}Doğru Cevap Sayısı:{% endif %}</strong> <span id="correct-count"> {{ correct_count }}</span></p>
+    <p><strong>{% if session.get('lang', 'tr') == 'en' %}Answered Questions:{% else %}Cevaplanan Soru Sayısı:{% endif %}</strong> <span id="question-num"> {{ question_num }}</span></p>
+    <p><strong>{% if session.get('lang', 'tr') == 'en' %}Elapsed Time:{% else %}Geçen Süre:{% endif %}</strong> <span id="elapsed-time"> {{ elapsed_time }}</span> {% if session.get('lang', 'tr') == 'en' %}seconds{% else %}saniye{% endif %}</p>
+</div>
+<!-- Restart Button -->
+<button class="restart-button" onclick="window.location.href='{{ url_for('marathon_restart') }}'">{% if session.get('lang', 'tr') == 'en' %}Try Again{% else %}Yeniden Dene{% endif %}</button>
+<!-- Share Button -->
+<button id="shareBtn" class="restart-button">
+    {% if session.get('lang', 'tr') == 'en' %}Share{% else %}Paylaş{% endif %}
+</button>
+
+<!-- html2canvas library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<!-- Share Feature -->
+<script>
+    document.getElementById("shareBtn").addEventListener("click", function() {
+        // Get data from server
+        fetch("/get_marathon_result")
+            .then(response => response.json())
+            .then(data => {
+                // Update data in HTML to prevent manipulation
+                console.log("Gelen veri:", data);
+                document.getElementById("correct-count").textContent = data.correct_count;
+                document.getElementById("question-num").textContent = data.question_num;
+                document.getElementById("elapsed-time").textContent = data.elapsed_time;
+
+                // Get screenshot
+                html2canvas(document.querySelector(".container")).then(canvas => {
+                    // Convert canvas to blob
+                    canvas.toBlob(function(blob) {
+                        // Check Web Share API
+                        if (navigator.canShare && navigator.canShare({ files: [new File([blob], "result.png", { type: blob.type })] })) {
+                            const file = new File([blob], "result.png", { type: blob.type });
+                            navigator.share({
+                                title: "Marathon Result",
+                                text: "Check out my marathon result!",
+                                files: [file]
+                            }).catch(error => console.error("Sharing error:", error));
+                        // If Web Share API not supported, use fallback to open the image in a new tab
+                        } else {
+                            const dataUrl = canvas.toDataURL();
+                            const imgWindow = window.open("");
+                            imgWindow.document.write("<img src='" + dataUrl + "' alt='Result Image' style='max-width:100%;'>");
+                        }
+                    });
+                });
+            })
+            .catch(error => console.error("Data couldn't retrieved:", error));
+    });
+</script>
+{% endblock %}
