@@ -30,7 +30,8 @@ def Create_Service(client_secret_file, api_name, api_version, *scopes):
         else:
             flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRET_FILE, SCOPES)
             # cred = flow.run_local_server(port=8080, redirect_uri="https://developers.google.com/oauthplayground")
-            cred = flow.run_local_server(port=8080)
+            # cred = flow.run_local_server(port=8080)
+            cred = flow.run_console()
             # cred = flow.run_local_server()
 
         with open(pickle_file, 'wb') as token:
