@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, render_template, request, redirect, url_for, session, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
-from secret_key import secret_key
 from init_db import initialize_database
 import os
 import re
@@ -14,7 +13,7 @@ if not os.path.exists("data.db"):
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = secret_key
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY", "default_secret_key")
 
 db = SQLAlchemy(app)
 
