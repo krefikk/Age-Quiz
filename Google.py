@@ -28,10 +28,9 @@ def decode_token():
     else:
         print("Encoded token file not found!")
 
-# Call this function at the start of your script
 decode_token()
 
-# Then proceed with the usual flow to use the pickle file
+# Proceed with the usual flow to use the pickle file
 def Create_Service(client_secret_file, api_name, api_version, scopes):
     cred = None
     pickle_file = f'token_{api_name}_{api_version}.pickle'

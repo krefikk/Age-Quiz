@@ -19,10 +19,10 @@ class Human(db.Model):
     def __repr__(self):
         return f'<Human {self.id} - Age: {self.age}, Gender: {self.gender}>'
 
-# Veritabanını oluştur
+# Create db
 def initialize_database():
     with app.app_context():
-        db.create_all()  # Create database
+        db.create_all()
 
         # If database already filled, don't fill it again
         if Human.query.first():
