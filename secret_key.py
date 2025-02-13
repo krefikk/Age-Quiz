@@ -1,1 +1,0 @@
-secret_key = "refik_Secret_Key_5526"
