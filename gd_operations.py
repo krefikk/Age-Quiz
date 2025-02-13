@@ -1,8 +1,18 @@
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
 from Google import Create_Service
+import os
+import json
 
-CLIENT_SECRET_FILE = 'age_quiz_client_secret.json'
+CLIENT_SECRET_JSON = os.environ.get("CLIENT_SECRET_JSON")
+if CLIENT_SECRET_JSON:
+    credentials_data = json.loads(CLIENT_SECRET_JSON)
+    with open("age_quiz_client_secret.json", "w") as json_file:
+        json.dump(credentials_data, json_file)
+    CLIENT_SECRET_FILE = "age_quiz_client_secret.json"
+else:
+    raise Exception("CLIENT_SECRET_JSON environment variable is missing!")
+
 API_NAME = 'drive'
 API_VERSION = 'v3'
 SCOPES = ['https://www.googleapis.com/auth/drive']
