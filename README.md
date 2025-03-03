@@ -11,7 +11,7 @@ You can see all the dependencies to run the project on your local device in requ
 Pull requests are always welcome.
 
 # Screenshots
-![Marathon Mode]([https://github.com/krefikk/Age-Quiz/blob/main/img/agequiz3.PNG])<br>
-![Result Screen]([https://github.com/krefikk/Age-Quiz/blob/main/img/agequiz4.PNG])<br>
-![Turkish Quiz Mode]([https://github.com/krefikk/Age-Quiz/blob/main/img/agequiz1.PNG])<br>
-![English Quiz Mode]([https://github.com/krefikk/Age-Quiz/blob/main/img/agequiz2.PNG])<br>
+![Marathon Mode](https://github.com/krefikk/Age-Quiz/blob/main/img/agequiz3.PNG)<br>
+![Result Screen](https://github.com/krefikk/Age-Quiz/blob/main/img/agequiz4.PNG)<br>
+![Turkish Quiz Mode](https://github.com/krefikk/Age-Quiz/blob/main/img/agequiz1.PNG)<br>
+![English Quiz Mode](https://github.com/krefikk/Age-Quiz/blob/main/img/agequiz2.PNG)<br>
