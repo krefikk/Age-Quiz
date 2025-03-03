@@ -9,3 +9,9 @@ You can see all the dependencies to run the project on your local device in requ
 
 # Contribution
 Pull requests are always welcome.
+
+# Screenshots
+![Marathon Mode](https://i.hizliresim.com/2xmkksv.PNG)<br>
+![Result Screen](https://i.hizliresim.com/iua8zdz.PNG)<br>
+![Turkish Quiz Mode](https://i.hizliresim.com/jbxkbiw.PNG)<br>
+![English Quiz Mode](https://i.hizliresim.com/bwzjhym.PNG)<br>
